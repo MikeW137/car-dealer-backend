@@ -10,6 +10,13 @@ A car dealership page, which visitors can check new and pre-owned vehicles inven
 
 ![Dealership ERD(1)](https://user-images.githubusercontent.com/49173138/118157867-b07d9b00-b3e0-11eb-9a6f-597e0db280e5.jpg)
 
+### Wireframes
+
+- Home Page
+<img width="1025" alt="Screen Shot 2021-05-13 at 11 56 47 AM" src="https://user-images.githubusercontent.com/49173138/118161264-fccada00-b3e4-11eb-8ab3-dccf731ba79d.png">
+
+- Inventory Pages
+<img width="1028" alt="Screen Shot 2021-05-13 at 12 15 17 PM" src="https://user-images.githubusercontent.com/49173138/118161304-09e7c900-b3e5-11eb-9c17-c69d84b2e529.png">
 
 ### Machineries used
 
