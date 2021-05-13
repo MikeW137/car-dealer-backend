@@ -3,6 +3,7 @@ package cardealerbackend.backend.repository;
 import cardealerbackend.backend.model.Inventory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface InventoryRepository extends JpaRepository<Inventory, Long> {
+import java.util.List;
 
+public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 }
