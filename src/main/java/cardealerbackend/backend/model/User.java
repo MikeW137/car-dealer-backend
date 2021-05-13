@@ -13,6 +13,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    private String userName;
+
+    @Column
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+
+
     public User(Long id, String userName, String password) {
         this.id = id;
         this.userName = userName;
@@ -55,12 +63,6 @@ public class User {
         this.password = password;
     }
 
-    @Column(unique = true)
-    private String userName;
-
-    @Column
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
 
 
 }

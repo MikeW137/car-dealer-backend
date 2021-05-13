@@ -1,5 +1,6 @@
 package cardealerbackend.backend.controller;
 
+import cardealerbackend.backend.model.LoginRequest.LoginRequest;
 import cardealerbackend.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
