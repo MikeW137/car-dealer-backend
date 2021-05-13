@@ -8,7 +8,8 @@ A car dealership page, which visitors can check new and pre-owned vehicles inven
 
 ### ERD Diagram
 
-![Dealership ERD](https://user-images.githubusercontent.com/49173138/118153451-89709a80-b3db-11eb-8973-a828af30898e.jpg)
+![Dealership ERD(1)](https://user-images.githubusercontent.com/49173138/118157867-b07d9b00-b3e0-11eb-9a6f-597e0db280e5.jpg)
+
 
 ### Machineries used
 
