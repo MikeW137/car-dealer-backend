@@ -34,14 +34,6 @@ public class Inventory {
     @JsonIgnore
     private Cars car;
 
-    public List<Image> getImageList() {
-        return imageList;
-    }
-
-    public void setImageList(List<Image> imageList) {
-        this.imageList = imageList;
-    }
-
     @OneToMany(mappedBy = "individualCar", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Image> imageList;
@@ -55,6 +47,14 @@ public class Inventory {
         this.color = color;
         this.fuelEfficiency = fuelEfficiency;
         this.price = price;
+    }
+
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
     }
 
     public Long getId() {
