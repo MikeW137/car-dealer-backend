@@ -57,6 +57,26 @@ public class InventoryService {
             return inventoryRepository.save(inventoryObject);
         }
     }
-    
+
+    public Inventory updateInventory(Long inventoryId, Inventory inventoryObject) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<Inventory> inventory = inventoryRepository.findById(inventoryId);
+        if (inventory.isPresent()) {
+            if (inventoryObject.getVin().equals(inventory.get().getVin())) {
+                System.out.println("Vin is the same");
+                throw new InformationExistException("Vin " + inventory.get().getVin() + " already exists");
+            } else {
+                Inventory updateInventory = inventoryRepository.findById(inventoryId).get();
+                updateInventory.setVin(inventoryObject.getVin());
+                updateInventory.setColor(inventoryObject.getColor());
+                updateInventory.setFuelEfficiency(inventoryObject.getFuelEfficiency());
+                updateInventory.setPrice(inventoryObject.getPrice());
+                return inventoryRepository.save(updateInventory);
+            }
+        } else {
+            throw new InformationNotFoundException("Car with" + inventoryId + " not found");
+        }
+    }
+
 
 }

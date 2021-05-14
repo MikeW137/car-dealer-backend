@@ -43,4 +43,13 @@ public class InventoryController {
 
     }
 
+    @PutMapping("/inventory/{inventoryId}")
+    public ResponseEntity<HashMap> updateInventory(@PathVariable(value = "inventoryId") Long inventoryId, @RequestBody Inventory inventoryObject) {
+        inventoryService.updateInventory(inventoryId, inventoryObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "Car with id: " + inventoryId + " was successfully updated.");
+        responseMessage.put("result", inventoryObject);
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
+
 }
