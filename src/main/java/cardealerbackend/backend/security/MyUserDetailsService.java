@@ -1,5 +1,6 @@
 package cardealerbackend.backend.security;
 
+import cardealerbackend.backend.model.User;
 import cardealerbackend.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,8 +18,8 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        User user = userService.findUserByEmailAddress(email);
-//        return new MyUserDetails(user);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userService.findUserByUserName(username);
+        return new MyUserDetails(user);
     }
 }

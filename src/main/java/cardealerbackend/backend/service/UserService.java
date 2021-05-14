@@ -1,8 +1,10 @@
 package cardealerbackend.backend.service;
 
 import cardealerbackend.backend.exception.InformationExistException;
+import cardealerbackend.backend.exception.InformationNotFoundException;
 import cardealerbackend.backend.model.LoginRequest.LoginRequest;
 import cardealerbackend.backend.model.User;
+import cardealerbackend.backend.model.response.LoginResponse;
 import cardealerbackend.backend.repository.UserRepository;
 import cardealerbackend.backend.security.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,17 +56,17 @@ public class UserService {
     public ResponseEntity<Object> loginUser(LoginRequest loginRequest){
         System.out.println("service calling loginUser ==>");
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-            final UserDetails userDetails = userDetailsService.loadUserByUsername((loginRequest.getEmail()));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
+            final UserDetails userDetails = userDetailsService.loadUserByUsername((loginRequest.getUserName()));
             final String JWT = jwtUtils.generateToken(userDetails);
             return ResponseEntity.ok(new LoginResponse(JWT));
         }catch(NullPointerException e){
-            throw new InformationNotFoundException("user with that email address " + loginRequest.getEmail() + " not found");
+            throw new InformationNotFoundException("user with that email address " + loginRequest.getUserName() + " not found");
         }
     }
 
-    public User findUserByEmailAddress(String email){
-        return userRepository.findUserByEmailAddress(email);
+    public User findUserByUserName(String username){
+        return userRepository.findUserByUserName(username);
     }
 }
 
