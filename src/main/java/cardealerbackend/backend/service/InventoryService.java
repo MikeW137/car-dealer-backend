@@ -1,13 +1,17 @@
 package cardealerbackend.backend.service;
 
+import cardealerbackend.backend.exception.InformationNotFoundException;
 import cardealerbackend.backend.model.Inventory;
 import cardealerbackend.backend.repository.CarsRepository;
 import cardealerbackend.backend.repository.ImageRepository;
 import cardealerbackend.backend.repository.InventoryRepository;
+import cardealerbackend.backend.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InventoryService {
@@ -29,10 +33,19 @@ public class InventoryService {
         this.carsRepository = carsRepository;
     }
 
-
-
     public List<Inventory> getInventory() {
         return inventoryRepository.findAll();
+    }
+
+    public Inventory getIndividualCar(Long carId) {
+        System.out.println("service getCategory ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Inventory inventory = inventoryRepository.findById(carId).get();
+        if (inventory == null) {
+            throw new InformationNotFoundException("Car with id " + carId + " not found");
+        } else {
+            return inventory;
+        }
     }
 
 }

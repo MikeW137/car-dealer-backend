@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path="/api")
@@ -18,11 +19,15 @@ public class InventoryController {
         this.inventoryService = inventoryService;
     }
 
-    @GetMapping("/new")
+    @GetMapping("/inventory")
     public List<Inventory> getInventory() {
         return inventoryService.getInventory();
     }
 
-
+    @GetMapping(path = "/inventory/{carId}")
+    public Inventory getCar(@PathVariable Long carId) {
+        System.out.println("calling getCategory ==>");
+        return inventoryService.getIndividualCar(carId);
+    }
 
 }
