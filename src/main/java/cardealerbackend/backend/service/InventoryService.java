@@ -1,5 +1,6 @@
 package cardealerbackend.backend.service;
 
+import cardealerbackend.backend.exception.InformationExistException;
 import cardealerbackend.backend.exception.InformationNotFoundException;
 import cardealerbackend.backend.model.Inventory;
 import cardealerbackend.backend.repository.CarsRepository;
@@ -38,7 +39,6 @@ public class InventoryService {
     }
 
     public Inventory getIndividualCar(Long carId) {
-        System.out.println("service getCategory ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Inventory inventory = inventoryRepository.findById(carId).get();
         if (inventory == null) {
@@ -47,5 +47,16 @@ public class InventoryService {
             return inventory;
         }
     }
+
+    public Inventory createInventory(Inventory inventoryObject) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Inventory inventory = inventoryRepository.findByVin(inventoryObject.getVin());
+        if (inventory != null) {
+            throw new InformationExistException("Car with vin " + inventory.getVin() + " already exists");
+        } else {
+            return inventoryRepository.save(inventoryObject);
+        }
+    }
+    
 
 }

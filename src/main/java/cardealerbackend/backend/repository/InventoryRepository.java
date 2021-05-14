@@ -9,5 +9,11 @@ import java.util.List;
 
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
-   // Inventory findByInventoryId(Long InventoryId);
+    Inventory findByVin(Long vinId);
 }
+
+
+
+//public interface BookRepository extends JpaRepository<Book, Long> {
+//    Book findByTitle(String titleName);
+//    List<Book> findByUserId(Long userId);
