@@ -164,7 +164,7 @@ public class InventoryService {
             imageRepository.deleteById(imageId);
             return image;
         } else {
-            throw new InformationNotFoundException("Image with id " + imageId + " not found");
+            throw new InformationNotFoundException("Car with id " + imageId + " not found");
         }
     }
 }
