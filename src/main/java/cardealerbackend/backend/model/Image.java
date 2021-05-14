@@ -17,9 +17,9 @@ public class Image {
     @Column
     private String imageUrl;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="inventory_id")
-    @JsonIgnore
     private Inventory inventory;
 
     public Image() {

@@ -38,6 +38,14 @@ public class Inventory {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Image> imageList;
 
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
+    }
+
     public Inventory() {
     }
 
@@ -49,13 +57,7 @@ public class Inventory {
         this.price = price;
     }
 
-    public List<Image> getImageList() {
-        return imageList;
-    }
 
-    public void setImageList(List<Image> imageList) {
-        this.imageList = imageList;
-    }
 
     public Long getId() {
         return id;
