@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface CarsRepository extends JpaRepository<Cars, Long> {
    // List<Cars> findByCarId(Long carId);
+    Cars findByMakeAndModelAndTrim(String make, String model, String trim);
 }

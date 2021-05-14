@@ -65,5 +65,14 @@ public class InventoryController {
         return inventoryService.getIndividualCar(carId);
     }
 
-    
+    @PostMapping(path = "/cars")
+    public ResponseEntity<HashMap> createCars(@RequestBody Cars carsObject) {
+        inventoryService.createCars(carsObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "Car with id: " + carsObject.getId() + " was successfully added.");
+        responseMessage.put("result", carsObject);
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+
+    }
+
 }

@@ -105,4 +105,14 @@ public class InventoryService {
         }
     }
 
+    public Cars createCars(Cars carsObject) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Cars car = carsRepository.findByMakeAndModelAndTrim(carsObject.getMake(), carsObject.getModel(), carsObject.getTrim());
+        if (car != null) {
+            throw new InformationExistException("Car with make/model/trim " + car.getId() + " already exists");
+        } else {
+            return carsRepository.save(carsObject);
+        }
+    }
+
 }
