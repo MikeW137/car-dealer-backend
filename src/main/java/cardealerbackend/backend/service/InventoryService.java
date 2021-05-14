@@ -8,9 +8,14 @@ import cardealerbackend.backend.repository.ImageRepository;
 import cardealerbackend.backend.repository.InventoryRepository;
 import cardealerbackend.backend.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +82,13 @@ public class InventoryService {
             throw new InformationNotFoundException("Car with" + inventoryId + " not found");
         }
     }
-
-
+    public Optional<Inventory> deleteInventory(Long inventoryId) {
+        Optional<Inventory> inventory = inventoryRepository.findById(inventoryId);
+        if (inventory.isPresent()) {
+            inventoryRepository.deleteById(inventoryId);
+            return inventory;
+        } else {
+            throw new InformationNotFoundException("Car with id " + inventoryId + " not found");
+        }
+    }
 }

@@ -29,7 +29,6 @@ public class InventoryController {
 
     @GetMapping(path = "/inventory/{carId}")
     public Inventory getCar(@PathVariable Long carId) {
-        System.out.println("calling getCategory ==>");
         return inventoryService.getIndividualCar(carId);
     }
 
@@ -37,7 +36,7 @@ public class InventoryController {
     public ResponseEntity<HashMap> createInventory(@RequestBody Inventory inventoryObject) {
         inventoryService.createInventory(inventoryObject);
         HashMap responseMessage = new HashMap();
-        responseMessage.put("status", "car with id: " + inventoryObject.getId() + " was successfully added.");
+        responseMessage.put("status", "Inventory with id: " + inventoryObject.getId() + " was successfully added.");
         responseMessage.put("result", inventoryObject);
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
 
@@ -47,9 +46,16 @@ public class InventoryController {
     public ResponseEntity<HashMap> updateInventory(@PathVariable(value = "inventoryId") Long inventoryId, @RequestBody Inventory inventoryObject) {
         inventoryService.updateInventory(inventoryId, inventoryObject);
         HashMap responseMessage = new HashMap();
-        responseMessage.put("status", "Car with id: " + inventoryId + " was successfully updated.");
+        responseMessage.put("status", "Inventory with id: " + inventoryId + " was successfully updated.");
         responseMessage.put("result", inventoryObject);
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
+    @DeleteMapping("/inventory/{inventoryId}")
+    public ResponseEntity<HashMap> deleteInventory(@PathVariable(value = "inventoryId") Long inventoryId) {
+        inventoryService.deleteInventory(inventoryId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "Inventory with id: " + inventoryId + " was successfully deleted.");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
 }
