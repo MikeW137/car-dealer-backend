@@ -135,6 +135,14 @@ public class InventoryService {
         }
     }
 
-
+    public Optional<Cars> deleteCars(Long carId) {
+        Optional<Cars> cars = carsRepository.findById(carId);
+        if (cars.isPresent()) {
+            carsRepository.deleteById(carId);
+            return cars;
+        } else {
+            throw new InformationNotFoundException("Car with id " + carId + " not found");
+        }
+    }
 
 }

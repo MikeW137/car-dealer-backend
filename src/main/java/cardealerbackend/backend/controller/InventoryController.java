@@ -84,5 +84,13 @@ public class InventoryController {
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
+    @DeleteMapping("/cars/{carId}")
+    public ResponseEntity<HashMap> deleteCars(@PathVariable(value = "carId") Long carId) {
+        inventoryService.deleteCars(carId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "Car with id: " + carId + " was successfully deleted.");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
+
 }
 
