@@ -93,7 +93,7 @@ public class InventoryController {
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/inventory/{inventoryId}/images/")
+    @PostMapping(path = "/inventory/{inventoryId}/images")
     public ResponseEntity<HashMap> createImage(@PathVariable(value = "inventoryId") Long inventoryId, @RequestBody Image imageObject) {
         inventoryService.createImage(inventoryId, imageObject);
         HashMap responseMessage = new HashMap();
@@ -103,5 +103,14 @@ public class InventoryController {
 
     }
 
+    @DeleteMapping("/cars/{carId}")
+    public ResponseEntity<HashMap> deleteCars(@PathVariable(value = "imageId") Long imageId) {
+        inventoryService.deleteCars(carId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "Car with id: " + carId + " was successfully deleted.");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
+
 }
 
+deleteImage
