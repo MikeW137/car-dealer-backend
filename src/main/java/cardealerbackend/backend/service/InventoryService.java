@@ -157,4 +157,14 @@ public class InventoryService {
             return imageRepository.save(imageObject);
         }
     }
+
+    public Optional<Image> deleteImage(Long imageId) {
+        Optional<Image> image = imageRepository.findById(imageId);
+        if (image.isPresent()) {
+            imageRepository.deleteById(imageId);
+            return image;
+        } else {
+            throw new InformationNotFoundException("Image with id " + imageId + " not found");
+        }
+    }
 }
