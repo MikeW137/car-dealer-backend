@@ -1,6 +1,7 @@
 package cardealerbackend.backend.controller;
 
 import cardealerbackend.backend.model.Cars;
+import cardealerbackend.backend.model.Image;
 import cardealerbackend.backend.model.Inventory;
 import cardealerbackend.backend.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,16 @@ public class InventoryController {
         HashMap responseMessage = new HashMap();
         responseMessage.put("status", "Car with id: " + carId + " was successfully deleted.");
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/inventory/{inventoryId}/images/")
+    public ResponseEntity<HashMap> createImage(@PathVariable(value = "inventoryId") Long inventoryId, @RequestBody Image imageObject) {
+        inventoryService.createImage(inventoryId, imageObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "Image with id: " + imageObject.getId() + " was successfully added.");
+        responseMessage.put("result", imageObject);
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+
     }
 
 }

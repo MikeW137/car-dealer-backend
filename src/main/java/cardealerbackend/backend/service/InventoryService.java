@@ -3,6 +3,7 @@ package cardealerbackend.backend.service;
 import cardealerbackend.backend.exception.InformationExistException;
 import cardealerbackend.backend.exception.InformationNotFoundException;
 import cardealerbackend.backend.model.Cars;
+import cardealerbackend.backend.model.Image;
 import cardealerbackend.backend.model.Inventory;
 import cardealerbackend.backend.repository.CarsRepository;
 import cardealerbackend.backend.repository.ImageRepository;
@@ -145,4 +146,15 @@ public class InventoryService {
         }
     }
 
+    public Image createImage(Long inventoryId, Image imageObject) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Image image = imageRepository.findByImageUrl(imageObject.getImageUrl());
+        Optional inventory = inventoryRepository.findById(inventoryId);
+        imageObject.setInventory((Inventory) inventory.get());
+        if (image != null) {
+            throw new InformationExistException("Image with id " + image.getId() + " already exists");
+        } else {
+            return imageRepository.save(imageObject);
+        }
+    }
 }

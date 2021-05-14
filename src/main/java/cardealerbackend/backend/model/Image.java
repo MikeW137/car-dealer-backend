@@ -18,9 +18,9 @@ public class Image {
     private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name="Car")
+    @JoinColumn(name="inventory_id")
     @JsonIgnore
-    private Inventory individualCar;
+    private Inventory inventory;
 
     public Image() {
     }
@@ -46,12 +46,12 @@ public class Image {
         this.imageUrl = imageUrl;
     }
 
-    public Inventory getIndividualCar() {
-        return individualCar;
+    public Inventory getInventory() {
+        return inventory;
     }
 
-    public void setIndividualCar(Inventory individualCar) {
-        this.individualCar = individualCar;
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class Inventory {
     @JsonIgnore
     private Cars car;
 
-    @OneToMany(mappedBy = "individualCar", orphanRemoval = true)
+    @OneToMany(mappedBy = "inventory", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Image> imageList;
 
