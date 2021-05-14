@@ -115,4 +115,26 @@ public class InventoryService {
         }
     }
 
+    public Cars updateCars(Long carId, Cars carsObject) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Cars cars = carsRepository.findById(carId).get();
+        if (cars != null) {
+            if (cars.equals(carsObject)) {
+                throw new InformationExistException("Car with " + cars.getId() + " already exists");
+            } else {
+                Cars updateCars = carsRepository.findById(carId).get();
+                updateCars.setMake(carsObject.getMake());
+                updateCars.setModel(carsObject.getModel());
+                updateCars.setYear(carsObject.getYear());
+                updateCars.setEngine(carsObject.getEngine());
+                updateCars.setTrim(carsObject.getTrim());
+                return carsRepository.save(updateCars);
+            }
+        } else {
+            throw new InformationNotFoundException("Car with" + carId + " not found");
+        }
+    }
+
+
+
 }
