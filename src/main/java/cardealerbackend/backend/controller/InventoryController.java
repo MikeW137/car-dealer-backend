@@ -1,5 +1,6 @@
 package cardealerbackend.backend.controller;
 
+import cardealerbackend.backend.model.Cars;
 import cardealerbackend.backend.model.Inventory;
 import cardealerbackend.backend.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class InventoryController {
         return inventoryService.getInventory();
     }
 
-    @GetMapping(path = "/inventory/{carId}")
-    public Inventory getCar(@PathVariable Long carId) {
-        return inventoryService.getIndividualCar(carId);
+    @GetMapping(path = "/inventory/{inventoryId}")
+    public Inventory getIndividualInventory(@PathVariable Long inventoryId) {
+        return inventoryService.getIndividualInventory(inventoryId);
     }
 
     @PostMapping(path = "/inventory")
@@ -58,4 +59,11 @@ public class InventoryController {
         responseMessage.put("status", "Inventory with id: " + inventoryId + " was successfully deleted.");
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
+
+    @GetMapping(path = "/cars/{carId}")
+    public Cars getIndividualCar(@PathVariable Long carId) {
+        return inventoryService.getIndividualCar(carId);
+    }
+
+    
 }

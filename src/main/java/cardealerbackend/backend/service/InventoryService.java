@@ -2,6 +2,7 @@ package cardealerbackend.backend.service;
 
 import cardealerbackend.backend.exception.InformationExistException;
 import cardealerbackend.backend.exception.InformationNotFoundException;
+import cardealerbackend.backend.model.Cars;
 import cardealerbackend.backend.model.Inventory;
 import cardealerbackend.backend.repository.CarsRepository;
 import cardealerbackend.backend.repository.ImageRepository;
@@ -43,11 +44,12 @@ public class InventoryService {
         return inventoryRepository.findAll();
     }
 
-    public Inventory getIndividualCar(Long carId) {
+    //Inventory Logic
+    public Inventory getIndividualInventory(Long inventoryId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Inventory inventory = inventoryRepository.findById(carId).get();
+        Inventory inventory = inventoryRepository.findById(inventoryId).get();
         if (inventory == null) {
-            throw new InformationNotFoundException("Car with id " + carId + " not found");
+            throw new InformationNotFoundException("Inventory with id " + inventoryId + " not found");
         } else {
             return inventory;
         }
@@ -57,7 +59,7 @@ public class InventoryService {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Inventory inventory = inventoryRepository.findByVin(inventoryObject.getVin());
         if (inventory != null) {
-            throw new InformationExistException("Car with vin " + inventory.getVin() + " already exists");
+            throw new InformationExistException("Inventory with vin " + inventory.getVin() + " already exists");
         } else {
             return inventoryRepository.save(inventoryObject);
         }
@@ -91,4 +93,16 @@ public class InventoryService {
             throw new InformationNotFoundException("Car with id " + inventoryId + " not found");
         }
     }
+
+    //Car Logic
+    public Cars getIndividualCar(Long carId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Cars car = carsRepository.findById(carId).get();
+        if (car == null) {
+            throw new InformationNotFoundException("Car with id " + carId + " not found");
+        } else {
+            return car;
+        }
+    }
+
 }
