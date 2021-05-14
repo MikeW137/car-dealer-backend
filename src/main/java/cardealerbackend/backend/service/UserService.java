@@ -47,7 +47,7 @@ public class UserService {
             userObject.setPassword(passwordEncoder.encode(userObject.getPassword()));
             return userRepository.save(userObject);
         } else {
-            throw new InformationExistException("user with email address " + userObject.getUserName() +
+            throw new InformationExistException("user with username " + userObject.getUserName() +
                     " already exists");
         }
     }
@@ -61,7 +61,7 @@ public class UserService {
             final String JWT = jwtUtils.generateToken(userDetails);
             return ResponseEntity.ok(new LoginResponse(JWT));
         }catch(NullPointerException e){
-            throw new InformationNotFoundException("user with that email address " + loginRequest.getUserName() + " not found");
+            throw new InformationNotFoundException("user with that username " + loginRequest.getUserName() + " not found");
         }
     }
 
