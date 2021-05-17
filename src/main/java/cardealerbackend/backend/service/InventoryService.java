@@ -107,7 +107,7 @@ public class InventoryService {
     }
 
     public Cars createCars(Cars carsObject) {
-        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    //    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Cars car = carsRepository.findByMakeAndModelAndTrimAndYear(carsObject.getMake(), carsObject.getModel(), carsObject.getTrim(), carsObject.getYear());
         if (car != null) {
             throw new InformationExistException("Car with make/model/trim/year " + car.getId() + " already exists");

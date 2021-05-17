@@ -4,11 +4,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -31,7 +33,15 @@ public class ControllerIntegrationTests {
                 .andExpect(content().string(containsString("111")));
         this.mockMvc.perform(get("/api/cars/1")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Ford"))).andExpect(content().string(containsString("Escape")));
-
-
+    }
+    @Test
+    public void testPostMethod() throws Exception {
+        //Testing Post Method for for main table Inventory
+        //These are placeholder values for url and content
+        this.mockMvc.perform(post("/api/inventory").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"make\":\"Ford\",\"model\":\"Escape\",\"year\": 2021,\"trim\":\"GT\",\"engine\":\"4L\",\"new\": true}"))
+                .andExpect(status().isOk());
     }
 }
+
+
