@@ -3,7 +3,6 @@ package cardealerbackend.backend.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import java.util.Date;
@@ -12,8 +11,7 @@ import java.util.Map;
 import java.util.function.Function;
 @Service
 public class JWTUtils {
-    @Value("${jwt.secret}")
-    String SECRET_KEY; //Secret key to make token
+    String SECRET_KEY = "TestKey"; //Secret key to make token
     //Token Generation staring
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
