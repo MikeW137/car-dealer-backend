@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.function.Function;
 @Service
 public class JWTUtils {
-    @Value("${JWT}")
+    @Value("${jwt.secret}")
     String SECRET_KEY; //Secret key to make token
     //Token Generation staring
     public String generateToken(UserDetails userDetails) {
