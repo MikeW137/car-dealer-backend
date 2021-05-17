@@ -56,4 +56,5 @@ class BackendApplicationTests {
         Image found = imagesRepository.findById(1L).get();
         assertEquals(image.toString(), found.toString());
     }
+
 }

@@ -41,7 +41,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // only allowed urls with out JWT
         http.authorizeRequests().antMatchers(
-                "/auth/users", "/auth/users/login", "/api/inventory", "/api/inventory/*", "/api/cars").permitAll()
+                "/auth/users", "/auth/users/login", "/api/inventory", "/api/inventory/*", "/api/cars/*").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
