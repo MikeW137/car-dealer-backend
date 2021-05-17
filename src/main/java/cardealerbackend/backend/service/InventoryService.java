@@ -47,7 +47,7 @@ public class InventoryService {
 
     //Inventory Logic
     public Inventory getIndividualInventory(Long inventoryId) {
-        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       // MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Inventory inventory = inventoryRepository.findById(inventoryId).get();
         if (inventory == null) {
             throw new InformationNotFoundException("Inventory with id " + inventoryId + " not found");
@@ -97,7 +97,7 @@ public class InventoryService {
 
     //Car Logic
     public Cars getIndividualCar(Long carId) {
-        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+     //   MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Cars car = carsRepository.findById(carId).get();
         if (car == null) {
             throw new InformationNotFoundException("Car with id " + carId + " not found");
@@ -164,7 +164,7 @@ public class InventoryService {
             imageRepository.deleteById(imageId);
             return image;
         } else {
-            throw new InformationNotFoundException("Image with id " + imageId + " not found");
+            throw new InformationNotFoundException("Car with id " + imageId + " not found");
         }
     }
 }

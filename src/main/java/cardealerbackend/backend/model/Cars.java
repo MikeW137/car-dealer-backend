@@ -32,6 +32,16 @@ public class Cars {
     public Cars() {
     }
 
+    public Cars(Long id, String make, String model, Integer year, String trim, String engine, Boolean isNew) {
+        this.id = id;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.trim = trim;
+        this.engine = engine;
+        this.isNew = isNew;
+    }
+
     public Long getId() {
         return id;
     }
