@@ -28,6 +28,9 @@ public class Inventory {
     @Column
     private Long price;
 
+    @Column
+    private Boolean isNew;
+
 
     @ManyToOne
     @JoinColumn(name = "cars_id")
@@ -49,15 +52,23 @@ public class Inventory {
     public Inventory() {
     }
 
-    public Inventory(Long id, Long vin, String color, String fuelEfficiency, Long price) {
+    public Inventory(Long id, Long vin, String color, String fuelEfficiency, Long price, Boolean isNew) {
         this.id = id;
         this.vin = vin;
         this.color = color;
         this.fuelEfficiency = fuelEfficiency;
         this.price = price;
+        this.isNew = isNew;
     }
 
 
+    public Boolean getNew() {
+        return isNew;
+    }
+
+    public void setNew(Boolean aNew) {
+        isNew = aNew;
+    }
 
     public Long getId() {
         return id;
@@ -115,6 +126,8 @@ public class Inventory {
                 ", color='" + color + '\'' +
                 ", fuelEfficiency='" + fuelEfficiency + '\'' +
                 ", price=" + price +
+                ", isNew=" + isNew +
+                ", imageList=" + imageList +
                 '}';
     }
 }

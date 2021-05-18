@@ -26,23 +26,19 @@ public class Cars {
     private String engine;
 
     @Column
-    private Boolean isNew;
-
-    @Column
     private String stockPhoto;
 
 
     public Cars() {
     }
 
-    public Cars(Long id, String make, String model, Integer year, String trim, String engine, Boolean isNew, String stockPhoto) {
+    public Cars(Long id, String make, String model, Integer year, String trim, String engine, String stockPhoto) {
         this.id = id;
         this.make = make;
         this.model = model;
         this.year = year;
         this.trim = trim;
         this.engine = engine;
-        this.isNew = isNew;
         this.stockPhoto = stockPhoto;
     }
 
@@ -102,14 +98,6 @@ public class Cars {
         this.engine = engine;
     }
 
-    public Boolean getNew() {
-        return isNew;
-    }
-
-    public void setNew(Boolean aNew) {
-        isNew = aNew;
-    }
-
     @Override
     public String toString() {
         return "Cars{" +
@@ -119,7 +107,6 @@ public class Cars {
                 ", year=" + year +
                 ", trim='" + trim + '\'' +
                 ", engine='" + engine + '\'' +
-                ", isNew=" + isNew +
                 '}';
     }
 
