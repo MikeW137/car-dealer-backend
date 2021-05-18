@@ -28,11 +28,14 @@ public class Cars {
     @Column
     private Boolean isNew;
 
+    @Column
+    private String stockPhoto;
+
 
     public Cars() {
     }
 
-    public Cars(Long id, String make, String model, Integer year, String trim, String engine, Boolean isNew) {
+    public Cars(Long id, String make, String model, Integer year, String trim, String engine, Boolean isNew, String stockPhoto) {
         this.id = id;
         this.make = make;
         this.model = model;
@@ -40,6 +43,7 @@ public class Cars {
         this.trim = trim;
         this.engine = engine;
         this.isNew = isNew;
+        this.stockPhoto = stockPhoto;
     }
 
     public Long getId() {
@@ -72,6 +76,14 @@ public class Cars {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public String getStockPhoto() {
+        return stockPhoto;
+    }
+
+    public void setStockPhoto(String stockPhoto) {
+        this.stockPhoto = stockPhoto;
     }
 
     public String getTrim() {
