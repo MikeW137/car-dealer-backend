@@ -66,6 +66,11 @@ public class InventoryController {
         return inventoryService.getIndividualCar(carId);
     }
 
+    @GetMapping("/cars")
+    public List<Cars> getCars() {
+        return inventoryService.getCars();
+    }
+
     @PostMapping(path = "/cars")
     public ResponseEntity<HashMap> createCars(@RequestBody Cars carsObject) {
         inventoryService.createCars(carsObject);

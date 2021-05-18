@@ -106,6 +106,10 @@ public class InventoryService {
         }
     }
 
+    public List<Cars> getCars() {
+        return carsRepository.findAll();
+    }
+
     public Cars createCars(Cars carsObject) {
     //    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Cars car = carsRepository.findByMakeAndModelAndTrimAndYear(carsObject.getMake(), carsObject.getModel(), carsObject.getTrim(), carsObject.getYear());
