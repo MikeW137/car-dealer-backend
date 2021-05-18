@@ -34,6 +34,11 @@ public class InventoryController {
         return inventoryService.getIndividualInventory(inventoryId);
     }
 
+    @GetMapping(path = "/inventory/search/{carId}")
+    public List<Inventory> searchInventory(@PathVariable Long carId) {
+        return inventoryService.searchInventory(carId);
+    }
+
     @PostMapping(path = "/inventory/{carId}")
     public ResponseEntity<HashMap> createInventory(@PathVariable(value = "carId") Long carId, @RequestBody Inventory inventoryObject) {
         inventoryService.createInventory(carId, inventoryObject);
