@@ -110,7 +110,7 @@ public class InventoryService {
     }
 
     public List<Inventory> searchInventory(Long carId) {
-        return inventoryRepository.findByCar_CarsId(carId);
+        return inventoryRepository.findByCar_Id(carId);
     }
     public List<Cars> getCars() {
         return carsRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
