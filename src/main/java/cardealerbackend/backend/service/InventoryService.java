@@ -56,9 +56,11 @@ public class InventoryService {
         }
     }
 
-    public Inventory createInventory(Inventory inventoryObject) {
+    public Inventory createInventory(Long carId, Inventory inventoryObject) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Inventory inventory = inventoryRepository.findByVin(inventoryObject.getVin());
+        Cars car = carsRepository.findById(carId).get();
+        inventoryObject.setCar(car);
         if (inventory != null) {
             throw new InformationExistException("Inventory with vin " + inventory.getVin() + " already exists");
         } else {

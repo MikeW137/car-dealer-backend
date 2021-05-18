@@ -34,9 +34,9 @@ public class InventoryController {
         return inventoryService.getIndividualInventory(inventoryId);
     }
 
-    @PostMapping(path = "/inventory")
-    public ResponseEntity<HashMap> createInventory(@RequestBody Inventory inventoryObject) {
-        inventoryService.createInventory(inventoryObject);
+    @PostMapping(path = "/inventory/{carId}")
+    public ResponseEntity<HashMap> createInventory(@PathVariable(value = "carId") Long carId, @RequestBody Inventory inventoryObject) {
+        inventoryService.createInventory(carId, inventoryObject);
         HashMap responseMessage = new HashMap();
         responseMessage.put("status", "Inventory with id: " + inventoryObject.getId() + " was successfully added.");
         responseMessage.put("result", inventoryObject);
