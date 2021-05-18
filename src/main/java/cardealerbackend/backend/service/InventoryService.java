@@ -10,6 +10,7 @@ import cardealerbackend.backend.repository.ImageRepository;
 import cardealerbackend.backend.repository.InventoryRepository;
 import cardealerbackend.backend.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -109,7 +110,7 @@ public class InventoryService {
     }
 
     public List<Cars> getCars() {
-        return carsRepository.findAll();
+        return carsRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     public Cars createCars(Cars carsObject) {
