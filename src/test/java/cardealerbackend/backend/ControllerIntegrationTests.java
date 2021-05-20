@@ -19,29 +19,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ControllerIntegrationTests {
-    //This file tests the primary Book CRUD and all of the GET methods for the tables.
-//    @Autowired
-//    public MockMvc mockMvc;
-//
-//    @Test
-//    public void testGetMethodsForAll() throws Exception {
-//        //This tests the Get Endpoints for all tables with hardcoded entries for the database
-//        //So the user can test it without DB tool or Postman
-//        //These are placeholder values for url and containsString
-//
-//        this.mockMvc.perform(get("/api/inventory/")).andDo(print()).andExpect(status().isOk())
-//                .andExpect(content().string(containsString("111")));
-//        this.mockMvc.perform(get("/api/cars/1")).andDo(print()).andExpect(status().isOk())
-//                .andExpect(content().string(containsString("Ford"))).andExpect(content().string(containsString("Escape")));
-//    }
-//    @Test
-//    public void testPostMethod() throws Exception {
-//        //Testing Post Method for for main table Inventory
-//        //These are placeholder values for url and content
-//        this.mockMvc.perform(post("/api/inventory").contentType(MediaType.APPLICATION_JSON)
-//                .content("{\"make\":\"Ford\",\"model\":\"Escape\",\"year\": 2021,\"trim\":\"GT\",\"engine\":\"4L\",\"new\": true}"))
-//                .andExpect(status().isOk());
-//    }
+  //  This file tests the primary Book CRUD and all of the GET methods for the tables.
+    @Autowired
+    public MockMvc mockMvc;
+
+    @Test
+    public void testGetMethodsForAll() throws Exception {
+        //This tests the Get Endpoints for all tables with hardcoded entries for the database
+        //So the user can test it without DB tool or Postman
+        //These are placeholder values for url and containsString
+
+        this.mockMvc.perform(get("/api/inventory/")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("111")));
+        this.mockMvc.perform(get("/api/cars/1")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Ford"))).andExpect(content().string(containsString("Escape")));
+    }
+    @Test
+    public void testPostMethod() throws Exception {
+        //Testing Post Method for for main table Inventory
+        //These are placeholder values for url and content
+        this.mockMvc.perform(post("/api/inventory").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"make\":\"Ford\",\"model\":\"Escape\",\"year\": 2021,\"trim\":\"GT\",\"engine\":\"4L\",\"new\": true}"))
+                .andExpect(status().isOk());
+    }
 }
 
 

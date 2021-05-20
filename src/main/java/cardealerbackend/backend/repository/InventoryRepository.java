@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     Inventory findByVin(Long vinId);
-    List<Inventory> findByCarsId(Long carsId);
+    List<Inventory> findByCar_Id(Long carId);
 }
 
 

@@ -34,6 +34,7 @@ public class InventoryController {
         return inventoryService.getIndividualInventory(inventoryId);
     }
 
+// middle page
     @GetMapping(path = "/inventory/search/{carId}")
     public List<Inventory> searchInventory(@PathVariable Long carId) {
         return inventoryService.searchInventory(carId);
