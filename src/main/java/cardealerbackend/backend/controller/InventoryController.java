@@ -46,7 +46,6 @@ public class InventoryController {
         responseMessage.put("status", "Inventory with id: " + inventoryObject.getId() + " was successfully added.");
         responseMessage.put("result", inventoryObject);
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
-
     }
 
     @PutMapping("/inventory/{inventoryId}")
