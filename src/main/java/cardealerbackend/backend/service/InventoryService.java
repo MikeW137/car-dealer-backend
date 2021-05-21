@@ -48,7 +48,6 @@ public class InventoryService {
 
     //Inventory Logic
     public Inventory getIndividualInventory(Long inventoryId) {
-       // MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Inventory inventory = inventoryRepository.findById(inventoryId).get();
         if (inventory == null) {
             throw new InformationNotFoundException("Inventory with id " + inventoryId + " not found");
@@ -89,6 +88,7 @@ public class InventoryService {
         }
     }
     public Optional<Inventory> deleteInventory(Long inventoryId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<Inventory> inventory = inventoryRepository.findById(inventoryId);
         if (inventory.isPresent()) {
             inventoryRepository.deleteById(inventoryId);
@@ -117,7 +117,7 @@ public class InventoryService {
     }
 
     public Cars createCars(Cars carsObject) {
-    //    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Cars car = carsRepository.findByMakeAndModelAndTrimAndYear(carsObject.getMake(), carsObject.getModel(), carsObject.getTrim(), carsObject.getYear());
         if (car != null) {
             throw new InformationExistException("Car with make/model/trim/year " + car.getId() + " already exists");
@@ -147,6 +147,7 @@ public class InventoryService {
     }
 
     public Optional<Cars> deleteCars(Long carId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<Cars> cars = carsRepository.findById(carId);
         if (cars.isPresent()) {
             carsRepository.deleteById(carId);
@@ -169,6 +170,7 @@ public class InventoryService {
     }
 
     public Optional<Image> deleteImage(Long imageId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<Image> image = imageRepository.findById(imageId);
         if (image.isPresent()) {
             imageRepository.deleteById(imageId);
