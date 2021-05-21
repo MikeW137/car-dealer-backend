@@ -1,42 +1,94 @@
-# car-dealer-backend
-
 ### Project
 
-A car dealership page, which visitors can check new and pre-owned vehicles inventory
+A car dealership page, which visitors can check new and pre-owned vehicles inventory. Link to the website [here!](https://car-dealer10.herokuapp.com/)
+The frontend can be seen [here!](https://github.com/MikeW137/car-dealer-frontend)
 
 ### General Approach
+
+We have four SQL Tables for the inventory/cars/images/users. Our approach was to allow annonomoys users to browse the inventory and make GET calls to the API, but not being able to POST, PUT or DELETE. Those operations are only allowed for our admin users, which are populating the database. In the backend, we split our code into business logic in the Service package and front-end mapping in the Controller package. We also created custom error messages contained within the Exception package, which are handling those cases. Our Repository package is using predefined methods from JPARepository interface, alongside some custom ones. 
+
+### General Approach
+
+We have four SQL Tables for the inventory/cars/images/users. Our approach was to allow annonomoys users to browse the inventory and make GET calls to the API, but not being able to POST, PUT or DELETE. Those operations are only allowed for our admin users, which are populating the database. In the backend, we split our code into business logic in the Service package and front-end mapping in the Controller package. We also created custom error messages contained within the Exception package, which are handling those cases. Our Repository package is using predefined methods from JPARepository interface, alongside some custom ones. 
+
+### Features
+- Bootstrap carousel for advertisement/home page information
+- Chat bot, with pre-determined responses using Dialogflow ES (Google Cloud)
+- Google maps integration for the dealership address (Has a placeholder address of Bob Rohrman's Schaumburg Ford)
+- Cars/Inventory/Single Car pages with API filter calls to our database.
+- API testing with J-Unit and Mock MVC
+- JSON Web Token Security
+
+### Screenshots
+
+We used some assets from car dealership websites in the Chicago area, such as https://www.patrickhyundai.com/ and https://www.carvana.com/ in order to re-create the feeling of a car dealership.
+
+<img width="1662" alt="Screen Shot 2021-05-21 at 10 19 44 AM" src="https://user-images.githubusercontent.com/49173138/119160867-5010de00-ba1e-11eb-99d7-3df662bb6174.png">
+<img width="1667" alt="Screen Shot 2021-05-21 at 10 19 56 AM" src="https://user-images.githubusercontent.com/49173138/119160913-599a4600-ba1e-11eb-8da0-715ac4920e9a.png">
+<img width="1672" alt="Screen Shot 2021-05-20 at 2 54 45 PM" src="https://user-images.githubusercontent.com/49173138/119040833-83e6f780-b97b-11eb-8337-046ca8d08908.png">
+<img width="1671" alt="Screen Shot 2021-05-21 at 10 20 20 AM" src="https://user-images.githubusercontent.com/49173138/119160990-70d93380-ba1e-11eb-8240-125459c2c421.png">
+<img width="1672" alt="Screen Shot 2021-05-21 at 10 20 51 AM" src="https://user-images.githubusercontent.com/49173138/119161032-7afb3200-ba1e-11eb-81f8-114294cf4fa3.png">
+
 
 ### ERD Diagram
 
 ![Dealership ERD](https://user-images.githubusercontent.com/49173138/118517829-2e051c00-b6fd-11eb-9599-60eedc021bab.jpg)
 
+### Endpoints
+| Endpoint | Functionality | Access |
+|---|----| --- |
+| GET /api/cars | Get All Car Makes | PUBLIC |
+| GET /api/cars/1 | Get Individual Car Make | PUBLIC |
+| GET /api/inventory | Get Make Inventory | PUBLIC |
+| GET /api/inventory/1 | Get Specific Make Cars | PUBLIC |
+| GET /api/inventory/search/1 | Get Specific Car | PUBLIC |
+| POST /api/inventory/1 | Creating Single Car | PRIVATE |
+| PUT /api/inventory/1 | Updating Single Car | PRIVATE |
+| DELETE /api/inventory/1 | Delete Single Car | PRIVATE |
+| POST /api/cars | Create Car Make | PRIVATE |
+| PUT /api/cars/1 | Update Car Make | PRIVATE |
+| DELETE /api/cars/1 | Delete Car Make | PRIVATE |
+| POST api/inventory/1/images | Create Inventory Image | PRIVATE |
+| DELETE api/images/1 | Delete Inventory Image | PRIVATE |
 
-### Wireframes
-
-- Home Page
-<img width="1025" alt="Screen Shot 2021-05-13 at 11 56 47 AM" src="https://user-images.githubusercontent.com/49173138/118161264-fccada00-b3e4-11eb-8ab3-dccf731ba79d.png">
-
-- Inventory Pages
-<img width="1028" alt="Screen Shot 2021-05-13 at 12 15 17 PM" src="https://user-images.githubusercontent.com/49173138/118161304-09e7c900-b3e5-11eb-9c17-c69d84b2e529.png">
 
 ### Machineries used
 
-### User Stories
+- Angular 11
+- Spring Boot Framework
+- IntelliJ IDEA/Java 11
+- Tomcat Server
+- Apache Maven
+- Dev Profile
+- Postman
+- Postgresql
+- pgAdmin 4
+- Bootstrap
+- Animate.css Library
+- Heroku
+- Kommunicate.io Bot
+- Dialogflow ES (Google Cloud)
+- Pivotal Tracker
 
-Our users are separated in two groups. First, employees, which are manipulating the website database and structure,
-adding cars to a database. Second, visitors, which are accesing the website without being able to register, but having
-access to multiple website features.
+### Installation
 
-Employee:
+- The installation instructions are for running the front-end locally, but connecting to
+a Back-end hosted on heroku
+Front-End
+1. Clone Repository
+2. Run 'npm install' in the project folder
+3. Run command 'ng serve'
 
-- As an employee, I want to be able to login to the application.
-- As an employee, I want to be able to add cars to a car inventory
-- As an employee, I want to be able to display a picture of the car.
+If you are having troubles running it check "start" field and change to "ng serve"
 
-Visitor:
+<img width="567" alt="Screen Shot 2021-05-21 at 10 33 59 AM" src="https://user-images.githubusercontent.com/49173138/119162614-3375a580-ba20-11eb-806e-1218b06b8a6a.png">
 
-- As a visitor, I want to be able to view a home page with a meaningful content.
-- As a visitor, I want to be able to view new/pre-owned car lists.
-- As a visitor, I want to be able to filter vehicles by charateristics.
-- As a visitor, I want to be able to leave reviews for the dealership
-- As a visitor, I want to be able to calculate a potential deal with the specific car interest.
+
+- Backend Maven Dependencies:
+You can reload project under maven options if dependencies don’t load properly on first download.
+![image](https://user-images.githubusercontent.com/7227339/114568739-03293300-9c3a-11eb-875e-096c82f199ab.png)
+
+
+### Descriptions of any unsolved problems
+We had hurdles during our efforts to implement the API filtering for the cars. Another obstacle we had, is when we were trying to deploy our API to Heroku, where
+we experienced issues with the JWT variable.
